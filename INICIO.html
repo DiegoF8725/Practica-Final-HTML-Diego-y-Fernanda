@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Links</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .columna-izquierda {
+            background-image: url(p.jpg);
+            width: 20%; 
+            height: 100vh;
+            border-right: 2px solid gray;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .columna-izquierda ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .columna-izquierda li {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .link-button {
+            display: block;
+            width: 150px;
+            height: 30px;
+            line-height: 27px;
+            background-color: #bdbdbd;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 auto;
+            transition: background-color 0.3s;
+        }
+
+        .link-button:hover {
+            background-color: #a9a9a9;
+        }
+
+        .imagen {
+            width: 100%; 
+            height: auto; 
+        }
+
+        .columna-derecha {
+            width: 80%; 
+            height: 100vh;
+            overflow: hidden; 
+            position: relative;
+            left: 100%;
+            transition: left 0.5s; /* Duración de la transición de cierre */
+        }
+
+        .columna-derecha.mostrar {
+            left: 20%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="columna-izquierda">
+        <ul>
+            <h2>PRÁCTICAS EXCEL</h2>
+            <li><a href="#" onclick="mostrarContenido('pagina1.html', this)" class="link-button">Operadores A.</a></li>
+            <li><a href="#" onclick="mostrarContenido('pagina2.html', this)" class="link-button">Ejercicio G.</a></li>
+            <li><a href="#" onclick="mostrarContenido('pagina3.html', this)" class="link-button">2IM01</a></li>
+            <li><a href="#" onclick="mostrarContenido('pagina4.html', this)" class="link-button">Edad</a></li>
+            <li><a href="#" onclick="mostrarContenido('pagina5.html', this)" class="link-button">Calificaciones</a></li>
+            <li><a href="#" onclick="mostrarContenido('pagina6.html', this)" class="link-button">Estadísticas</a></li>
+            <li><a href="#" onclick="mostrarContenido('pagina7.html', this)" class="link-button">Filtro E.</a></li>
+            <li><a href="#" onclick="mostrarContenido('pagina8.html', this)" class="link-button">Tablas D.</a></li>
+            <li><a href="#" onclick="mostrarContenido('pagina9.html', this)" class="link-button">Función SI_Y</a></li>
+        </ul>
+        <a href="https://www.cecyt19.ipn.mx" target="_blank"><img src="logocecyt19.png" height="250" width="250" alt="CECyT19" /></a>
+    </div>
+    <div id="columna-derecha" class="columna-derecha">
+        <iframe id="mi-iframe" src=""></iframe>
+    </div>
+
+    <script>
+        let currentButton = null;
+
+        function mostrarContenido(url, button) {
+            var columnaDerecha = document.getElementById("columna-derecha");
+            var iframe = document.getElementById("mi-iframe");
+
+            if (button === currentButton) {
+                cerrarContenido();
+                currentButton = null;
+            } else {
+                if (currentButton) {
+                    cerrarContenido();
+                    setTimeout(() => {
+                        abrirContenido(url, button);
+                    }, 500); /* Aumentamos el tiempo de espera para asegurar que la animación de cierre se complete */
+                } else {
+                    abrirContenido(url, button);
+                }
+            }
+        }
+
+        function abrirContenido(url, button) {
+            var columnaDerecha = document.getElementById("columna-derecha");
+            var iframe = document.getElementById("mi-iframe");
+
+            columnaDerecha.style.transition = "none";
+            columnaDerecha.offsetWidth; // Trigger a reflow
+            columnaDerecha.style.transition = "left 0.5s"; /* Duración de la transición de apertura */
+            columnaDerecha.classList.add("mostrar");
+            iframe.src = url;
+            currentButton = button;
+        }
+
+        function cerrarContenido() {
+            var columnaDerecha = document.getElementById("columna-derecha");
+            var iframe = document.getElementById("mi-iframe");
+
+            columnaDerecha.style.transition = "left 0.8s"; /* Duración de la transición de cierre */
+            columnaDerecha.classList.remove("mostrar");
+            iframe.src = "";
+        }
+    </script>
+</body>
+</html>
