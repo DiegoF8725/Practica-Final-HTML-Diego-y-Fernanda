@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Links</title>
+    <title>PROYECTO FINAL FERNANDA Y DIEGO</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -63,7 +63,7 @@
             overflow: hidden; 
             position: relative;
             left: 100%;
-            transition: left 0.5s; /* Duración de la transición de cierre */
+            transition: left 0.5s;
         }
 
         .columna-derecha.mostrar {
@@ -112,7 +112,7 @@
                     cerrarContenido();
                     setTimeout(() => {
                         abrirContenido(url, button);
-                    }, 500); /* Aumentamos el tiempo de espera para asegurar que la animación de cierre se complete */
+                    }, 500); 
                 } else {
                     abrirContenido(url, button);
                 }
@@ -124,8 +124,8 @@
             var iframe = document.getElementById("mi-iframe");
 
             columnaDerecha.style.transition = "none";
-            columnaDerecha.offsetWidth; // Trigger a reflow
-            columnaDerecha.style.transition = "left 0.5s"; /* Duración de la transición de apertura */
+            columnaDerecha.offsetWidth; 
+            columnaDerecha.style.transition = "left 0.5s"; 
             columnaDerecha.classList.add("mostrar");
             iframe.src = url;
             currentButton = button;
@@ -135,7 +135,7 @@
             var columnaDerecha = document.getElementById("columna-derecha");
             var iframe = document.getElementById("mi-iframe");
 
-            columnaDerecha.style.transition = "left 0.8s"; /* Duración de la transición de cierre */
+            columnaDerecha.style.transition = "left 0.8s"; 
             columnaDerecha.classList.remove("mostrar");
             iframe.src = "";
         }
